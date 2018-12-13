@@ -5,8 +5,10 @@ class Ball {
         this.y = random(height);
         this.size = random(50, 200);
         this.mass = pow(this.size/2, 2) * PI 
-        this.vx = random(1, 10);
-        this.vy = random(1, 10);
+        this.v = random(2, 15);
+        this.direction = random(0, TAU)
+        this.vx = this.v * cos(this.direction)
+        this.vy = this.v * sin(this.direction)
         this.color = random(100);
     };
 
@@ -21,6 +23,9 @@ class Ball {
         if (this.y > height || this.y < 0) {
             this.vy *= -1;
         };
+
+        // Update attributes
+        this.direction = angle(0, 0, this.vx, this.vy)
     };
     
     display() {

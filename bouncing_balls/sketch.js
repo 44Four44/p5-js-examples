@@ -7,21 +7,20 @@ var jeff;
 var lines;
 var pyramid;
 
-function preLoad() {
-  // Load image
-  jeff = loadImage('jeff.jpg');
-}
-
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
 
   // Create balls
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 1; i++) {
     balls.push(new Ball());
   }
 
+  // Load image
+  jeff1 = loadImage('jeff1.jpg');
+  jeff2 = loadImage('jeff2.jpg');
+
   //settings
-  lines = true;
+  lines = false;
   pyramid = false;
 }
 
@@ -60,15 +59,16 @@ function draw() {
       fill(90, 99, 99, 20)
       triangle(balls[0].x, balls[0].y, balls[3].x, balls[3].y, balls[2].x, balls[2].y)  
     }
-
-  line(width/2, height/2, mouseX, mouseY);
-  print(angle(width/2, height/2, mouseX, mouseY));
-
-  // image(jeff, 0, 0, 200, 200);
   } else {
     // Jumpscare with flashing and noise
-    background(204);
-      print("done");
+    if (frameCount % 5 >= 2) {
+      background(0);
+      image(jeff1, 80, 0, 1200, height);
+    } else {
+      background(0);
+      image(jeff2, 80, 0, 1200, height);
+    }
+    print("done");
   }
 }
 
