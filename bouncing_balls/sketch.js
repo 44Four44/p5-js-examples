@@ -62,13 +62,13 @@ function draw() {
     }
 
   line(width/2, height/2, mouseX, mouseY);
-  // print(angle(width/2, height/2, mouseX, mouseY));
+  print(angle(width/2, height/2, mouseX, mouseY));
 
   // image(jeff, 0, 0, 200, 200);
   } else {
     // Jumpscare with flashing and noise
     background(204);
-      print("done")
+      print("done");
   }
 }
 
@@ -76,7 +76,7 @@ function mousePressed() {
   // Pop ball if cursor is over ball
   for (var i = 0; i < balls.length; i++) {
     if (balls[i].contains(mouseX, mouseY)) {
-      balls.splice(i, 1)
+      balls.splice(i, 1);
     }
   }
 }
