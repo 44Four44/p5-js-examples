@@ -1,7 +1,5 @@
 // Balls array
 var balls = [];
-// Jeff the killer
-var jeff;
 
 //settings
 var lines;
@@ -11,7 +9,7 @@ function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
 
   // Create balls
-  for (var i = 0; i < 1; i++) {
+  for (var i = 0; i < 10; i++) {
     balls.push(new Ball());
   }
 
@@ -19,8 +17,12 @@ function setup() {
   jeff1 = loadImage('jeff1.jpg');
   jeff2 = loadImage('jeff2.jpg');
 
+  // Load sound
+  scream = loadSound('scream.mp3');
+  scream.setVolume(1);
+
   //settings
-  lines = false;
+  lines = true;
   pyramid = false;
 }
 
@@ -31,12 +33,18 @@ function draw() {
     fill(255, 0, 0);
     stroke(0);
 
-    // Draw balls
+    // Balls
     for (var i = 0; i < balls.length; i++) {
-      balls[i].move();
-      balls[i].display();
+      var ball = balls[i]
+      ball.move();
+      ball.checkCollision();
     }
 
+    for (var i = 0; i < balls.length; i++) {
+      var ball = balls[i]
+      ball.update();
+      ball.display();
+    }
     // Draw lines connecting centres
     if (lines) {
       stroke(0);
@@ -59,15 +67,20 @@ function draw() {
       fill(90, 99, 99, 20)
       triangle(balls[0].x, balls[0].y, balls[3].x, balls[3].y, balls[2].x, balls[2].y)  
     }
+
   } else {
-    // Jumpscare with flashing and noise
+    // Scary screaming noise
+    scream.play()
+
+    // Flashing jumpscare
     if (frameCount % 5 >= 2) {
       background(0);
-      image(jeff1, 80, 0, 1200, height);
+      image(jeff1, 200, 0, 1200, height);
     } else {
       background(0);
-      image(jeff2, 80, 0, 1200, height);
+      image(jeff2, 200, 0, 1200, height);
     }
+
     print("done");
   }
 }
